@@ -49,7 +49,7 @@ PPFLAGS = $(foreach def,$(DEFS),-D$(def))
 
 ifeq ($(TARGET),gsnap)
 #  FFLAGS = -Ofast -funroll-loops -march=native $(OMPFLAG)
-  FFLAGS = $(OMPFLAG)
+  FFLAGS = --show-ast $(OMPFLAG)
   FFLAG2 =
   PP = cpp
   ifeq ($(OPT),no)
