@@ -5,30 +5,27 @@ OPT = yes
 FFLAGS =
 FFLAG2 =
 DEFS =
-PP =
+PP = cpp
 
-MPI = yes
-OPENMP = yes
+MPI = no
+OPENMP = no
 
-FORTRAN = mpif90
+#FORTRAN = mpif90
 #FORTRAN = mpifort
 #FORTRAN = ftn
 #FORTRAN = mpiifort
+FORTRAN = nagfor
 
-TARGET = gsnap
+#TARGET = gsnap
 #TARGET = isnap
 #TARGET = ksnap
+TARGET = nsnap
 
 #HASWELL = yes
 
 ifeq ($(MPI),yes)
   DEFS := $(DEFS) MPI
 else
-  ifeq ($(TARGET),gsnap)
-    FORTRAN = gfortran
-  else
-    FORTRAN = ifort
-  endif
 endif
 
 ifeq ($(OPENMP),yes)
