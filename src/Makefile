@@ -141,9 +141,11 @@ translv.o :	global.o plib.o geom.o sn.o data.o control.o utils.o \
 #
 %.o:	%.0.F90
 	$(PP) -P $(PPFLAGS) $< >$*.f90
+	lfortran fmt -i $*.f90
 	$(FORTRAN) $(FFLAGS) -c $*.f90
 
 %.o:	%.f90
+	lfortran fmt -i $<
 	$(FORTRAN) $(FFLAGS) -c $<
 
 #
