@@ -1399,7 +1399,7 @@ MODULE plib_module
 #else
 
   SUBROUTINE plock_omp ( dowhat, nlock )
-    CHARACTER(LEN=*), INTENT(IN) :: dowhat
+    CHARACTER(LEN=1), INTENT(IN) :: dowhat
     INTEGER(i_knd), INTENT(IN) :: nlock
   END SUBROUTINE plock_omp
 
