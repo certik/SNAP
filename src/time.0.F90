@@ -63,7 +63,7 @@ MODULE time_module
 #ifdef MPI
     time = MPI_WTIME()
 #else
-    CALL CPU_TIME ( time )
+!    CALL CPU_TIME ( time )
 #endif
 !_______________________________________________________________________
 !_______________________________________________________________________
@@ -91,7 +91,7 @@ MODULE time_module
     tinrmisc = tinners - ( tinrsrc + tsweeps )
     tslvmisc = tslv - ( tparam + totrsrc + tinners )
 
-    WRITE( ounit, 401 ) ( star, i = 1, 80 )
+!    WRITE( ounit, 401 ) ( star, i = 1, 80 )
     WRITE( ounit, 402 )
     WRITE( ounit, 403 ) tparset
     WRITE( ounit, 404 ) tinp
@@ -107,21 +107,6 @@ MODULE time_module
     WRITE( ounit, 414 ) tout
 !_______________________________________________________________________
 
-    401 FORMAT( 10X, 'keyword Timing Summary', /, 80A, / )
-    402 FORMAT( 2X, 'Code Section', T41, 'Time (seconds)', /,          &
-                1X, '**************', T40, '****************' )
-    403 FORMAT( 4X, 'Parallel Setup', T41, ES11.4 )
-    404 FORMAT( 4X, 'Input', T41, ES11.4 )
-    405 FORMAT( 4X, 'Setup', T41, ES11.4 )
-    406 FORMAT( 4X, 'Solve', T41, ES11.4 )
-    407 FORMAT( 7X, 'Parameter Setup', T41, ES11.4 )
-    408 FORMAT( 7X, 'Outer Source', T41, ES11.4 )
-    409 FORMAT( 7X, 'Inner Iterations', T41, ES11.4 )
-    410 FORMAT( 10X, 'Inner Source', T41, ES11.4 )
-    411 FORMAT( 10X, 'Transport Sweeps', T41, ES11.4 )
-    412 FORMAT( 10X, 'Inner Misc Ops', T41, ES11.4 )
-    413 FORMAT( 7X, 'Solution Misc Ops', T41, ES11.4 )
-    414 FORMAT( 4X, 'Output', T41, ES11.4 )
 !_______________________________________________________________________
 !_______________________________________________________________________
 

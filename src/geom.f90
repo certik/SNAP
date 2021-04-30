@@ -159,7 +159,6 @@ MODULE geom_module
       DO j = 1, ny
       DO i = 1, ichunk
         nn = i + j + k - 2
-        diag(nn)%len = diag(nn)%len + 1
       END DO
       END DO
       END DO
@@ -169,10 +168,9 @@ MODULE geom_module
 !_______________________________________________________________________
 
       DO nn = 1, ndiag
-        ing = diag(nn)%len
         ALLOCATE( diag(nn)%cell_id(ing), STAT=ierr )
         IF ( ierr /= 0 ) RETURN
-        ndpwds = ndpwds + SIZE( diag(nn)%cell_id )
+        ndpwds = ndpwds + SIZE( diag )
       END DO
 !_______________________________________________________________________
 !
@@ -185,9 +183,6 @@ MODULE geom_module
         nn = i + j + k - 2
         indx(nn) = indx(nn) + 1
         ing = indx(nn)
-        diag(nn)%cell_id(ing)%ic = i
-        diag(nn)%cell_id(ing)%j  = j
-        diag(nn)%cell_id(ing)%k  = k
       END DO
       END DO
       END DO
