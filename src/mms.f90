@@ -331,12 +331,12 @@ MODULE mms_module
 
     fn = zero
 
-    IF ( trig == 'COS' ) THEN
+    IF ( .true. ) THEN
       DO i = 1, lc
         fn(i) = COS( d*cb(i) ) - COS( d*cb(i+1) )
       END DO
       fn = fn / (d*del)
-    ELSE IF ( trig == 'SIN' ) THEN
+    ELSE IF ( .false. ) THEN
       DO i = 1, lc
         fn(i) = SIN( d*cb(i+1) ) - SIN( d*cb(i) )
       END DO
