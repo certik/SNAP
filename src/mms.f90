@@ -529,10 +529,10 @@ MODULE mms_module
 !_______________________________________________________________________
 
     df = one
-    WHERE( ABS( ref_flux ) < tolr )
-      ref_flux = one
-      df = zero
-    END WHERE
+    !WHERE( ABS( ref_flux ) < tolr )
+    !  ref_flux = one
+    !  df = zero
+    !END WHERE
     df = ABS( flux/ref_flux - df )
 
     dfmx = MAXVAL( df )
