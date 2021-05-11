@@ -115,7 +115,7 @@ MODULE solvar_module
 
     ierr = 0
 
-    NULLIFY( ptr_in, ptr_out )
+!    NULLIFY( ptr_in, ptr_out )
 
     IF ( timedep == 1 ) THEN
       IF ( angcpy == 1 ) THEN
@@ -132,7 +132,7 @@ MODULE solvar_module
     IF ( timedep == 1 ) THEN
       ptr_in = zero
       IF ( angcpy == 1 ) THEN
-        ptr_out => ptr_in
+!        ptr_out => ptr_in
       ELSE
         ptr_out = zero
       END IF
