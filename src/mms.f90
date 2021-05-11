@@ -546,11 +546,11 @@ MODULE mms_module
     dfsm = dfsm / REAL( nx*ny_gl*nz_gl*ng )
 
     IF ( iproc == root ) THEN
-      WRITE( ounit, 421 ) ( star, i = 1, 80 )
+!      WRITE( ounit, 421 ) ( star, i = 1, 80 )
       WRITE( ounit, 422 ) dfmx
       WRITE( ounit, 425 ) dfmn
       WRITE( ounit, 426 ) dfsm
-      WRITE( ounit, 428 ) ( star, i = 1, 80 )
+!      WRITE( ounit, 428 ) ( star, i = 1, 80 )
     END IF
 !_______________________________________________________________________
 
