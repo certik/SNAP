@@ -554,14 +554,14 @@ MODULE mms_module
     END IF
 !_______________________________________________________________________
 
-    421 FORMAT( 10X, 'MMS Verification', /, 80A )
-    422 FORMAT( /, 4X, 'Manufactured/Computed Solutions Max Diff=',    &
-                 ES13.6 )
-    425 FORMAT( /, 4X, 'Manufactured/Computed Solutions Min Diff=',    &
-                 ES13.6 )
-    426 FORMAT( /, 4X, 'Manufactured/Computed Solutions Avg Diff=',    &
-                 ES13.6 )
-    428 FORMAT( /, 80A, / )
+!    421 FORMAT( 10X, 'MMS Verification', /, 80A )
+!    422 FORMAT( /, 4X, 'Manufactured/Computed Solutions Max Diff=',    &
+!                 ES13.6 )
+!    425 FORMAT( /, 4X, 'Manufactured/Computed Solutions Min Diff=',    &
+!                 ES13.6 )
+!    426 FORMAT( /, 4X, 'Manufactured/Computed Solutions Avg Diff=',    &
+!                 ES13.6 )
+!    428 FORMAT( /, 80A, / )
 !_______________________________________________________________________
 
   END SUBROUTINE mms_verify_1
