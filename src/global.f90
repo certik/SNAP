@@ -19,9 +19,9 @@ MODULE global_module
 ! Numerical kinds.
 !_______________________________________________________________________
 
-  INTEGER, PARAMETER :: l_knd = KIND( .TRUE. )
-  INTEGER, PARAMETER :: i_knd = SELECTED_INT_KIND( 8 )
-  INTEGER, PARAMETER :: r_knd = SELECTED_REAL_KIND( 13 )
+  INTEGER, PARAMETER :: l_knd = 4
+  INTEGER, PARAMETER :: i_knd = 4
+  INTEGER, PARAMETER :: r_knd = 8
 !_______________________________________________________________________
 !
 ! File names and unit numbers.
