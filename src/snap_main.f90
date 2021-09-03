@@ -215,9 +215,9 @@ PROGRAM snap_main
   tsnap = t5 - t1
 
   IF ( iproc == root ) THEN
-    WRITE( ounit, 501 ) tsnap
-    WRITE( ounit, 502 ) tgrind, ( star, i = 1, 80 )
-    WRITE( ounit, 503 ) ndpwds, ( star, i = 1, 80 )
+    WRITE( ounit, * ) tsnap
+    WRITE( ounit, * ) tgrind, ( star, i = 1, 80 )
+    WRITE( ounit, * ) ndpwds, ( star, i = 1, 80 )
   END IF
 
   CALL close_file ( ounit, ierr, error )

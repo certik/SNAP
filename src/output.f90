@@ -84,7 +84,7 @@ MODULE output_module
     IF ( soloutp == 1 ) THEN
 
       IF ( iproc == root ) THEN
-        WRITE( ounit, 301 ) ( star, i = 1, 80 )
+        WRITE( ounit, * ) ( star, i = 1, 80 )
         ALLOCATE( fprnt(nx,ny_gl), STAT=ierr )
         fprnt = zero
       END IF
@@ -130,7 +130,7 @@ MODULE output_module
 
           co(1) = (k-1)/nz
           fprnt(:,1:ny) = flux0(:,:,kloc,g)
-          WRITE( ounit, 302 ) ( star, i = 1, 35 ), g, k,               &
+          WRITE( ounit, * ) ( star, i = 1, 35 ), g, k,               &
             ( star, i = 1, 35 )
 
           DO jp = 0, npey-1
@@ -155,7 +155,7 @@ MODULE output_module
             END DO
           END DO
 
-          WRITE( ounit, 307 ) ( star, i = 1, 80 )
+          WRITE( ounit, * ) ( star, i = 1, 80 )
 
         END IF
 
@@ -289,9 +289,9 @@ MODULE output_module
 
     IF ( iproc == root ) THEN
       IF ( fluxp == 1 ) THEN
-        WRITE( fu, 321 )
+        WRITE( fu, * )
       ELSE
-        WRITE( fu, 322 )
+        WRITE( fu, * )
       END IF
     END IF
 !_______________________________________________________________________
@@ -303,7 +303,7 @@ MODULE output_module
 
     DO l = 1, MAX( 1, (fluxp-1)*cmom )
 
-      IF ( iproc == root ) WRITE( fu, 323 ) l
+      IF ( iproc == root ) WRITE( fu, * ) l
 
       DO g = 1, ng
         DO k = 1, nz_gl
@@ -330,7 +330,7 @@ MODULE output_module
               mtag = l*ng*nz + (g-1)*nz + kloc
               CALL output_recv ( mtag, rank, fprnt(:,jlb:jub) )
             END DO
-            WRITE( fu, 324 ) ( ( fprnt(i,j), i = 1, nx ), j = 1, ny_gl )
+            WRITE( fu, * ) ( ( fprnt(i,j), i = 1, nx ), j = 1, ny_gl )
           END IF
 
         END DO

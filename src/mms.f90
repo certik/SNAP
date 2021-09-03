@@ -547,9 +547,9 @@ MODULE mms_module
 
     IF ( iproc == root ) THEN
 !      WRITE( ounit, 421 ) ( star, i = 1, 80 )
-      WRITE( ounit, 422 ) dfmx
-      WRITE( ounit, 425 ) dfmn
-      WRITE( ounit, 426 ) dfsm
+      WRITE( ounit, * ) dfmx
+      WRITE( ounit, * ) dfmn
+      WRITE( ounit, * ) dfsm
 !      WRITE( ounit, 428 ) ( star, i = 1, 80 )
     END IF
 !_______________________________________________________________________

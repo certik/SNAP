@@ -77,17 +77,17 @@ MODULE input_module
     INTEGER(i_knd) :: i
 !_______________________________________________________________________
 
-    WRITE( ounit, 121 ) ( star, i = 1, 80 )
-    WRITE( ounit, 122 ) ( star, i = 1, 80 )
-    WRITE( ounit, 123 )
-    WRITE( ounit, 124 ) npey, npez, ichunk, nthreads, nnested
-    WRITE( ounit, 125 ) ndimen, nx, ny, nz
-    WRITE( ounit, 126 ) lx, ly, lz
-    WRITE( ounit, 127 ) nmom, nang
-    WRITE( ounit, 128 ) ng, mat_opt, src_opt, scatp
-    WRITE( ounit, 129 ) epsi, iitm, oitm, timedep, tf, nsteps, swp_typ,&
+    WRITE( ounit, * ) ( star, i = 1, 80 )
+    WRITE( ounit, * ) ( star, i = 1, 80 )
+    WRITE( ounit, * )
+    WRITE( ounit, * ) npey, npez, ichunk, nthreads, nnested
+    WRITE( ounit, * ) ndimen, nx, ny, nz
+    WRITE( ounit, * ) lx, ly, lz
+    WRITE( ounit, * ) nmom, nang
+    WRITE( ounit, * ) ng, mat_opt, src_opt, scatp
+    WRITE( ounit, * ) epsi, iitm, oitm, timedep, tf, nsteps, swp_typ,&
       multiswp, angcpy, it_det, soloutp, kplane, popout, fluxp, fixup
-    WRITE( ounit, 121 ) ( star, i = 1, 80 )
+    WRITE( ounit, * ) ( star, i = 1, 80 )
 !_______________________________________________________________________
 !_______________________________________________________________________
 !_______________________________________________________________________

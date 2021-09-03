@@ -92,19 +92,19 @@ MODULE time_module
     tslvmisc = tslv - ( tparam + totrsrc + tinners )
 
 !    WRITE( ounit, 401 ) ( star, i = 1, 80 )
-    WRITE( ounit, 402 )
-    WRITE( ounit, 403 ) tparset
-    WRITE( ounit, 404 ) tinp
-    WRITE( ounit, 405 ) tset
-    WRITE( ounit, 406 ) tslv
-    WRITE( ounit, 407 ) tparam
-    WRITE( ounit, 408 ) totrsrc
-    WRITE( ounit, 409 ) tinners
-    WRITE( ounit, 410 ) tinrsrc
-    WRITE( ounit, 411 ) tsweeps
-    WRITE( ounit, 412 ) tinrmisc
-    WRITE( ounit, 413 ) tslvmisc
-    WRITE( ounit, 414 ) tout
+    WRITE( ounit, * )
+    WRITE( ounit, * ) tparset
+    WRITE( ounit, * ) tinp
+    WRITE( ounit, * ) tset
+    WRITE( ounit, * ) tslv
+    WRITE( ounit, * ) tparam
+    WRITE( ounit, * ) totrsrc
+    WRITE( ounit, * ) tinners
+    WRITE( ounit, * ) tinrsrc
+    WRITE( ounit, * ) tsweeps
+    WRITE( ounit, * ) tinrmisc
+    WRITE( ounit, * ) tslvmisc
+    WRITE( ounit, * ) tout
 !_______________________________________________________________________
 
 !_______________________________________________________________________

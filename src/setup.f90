@@ -753,70 +753,70 @@ MODULE setup_module
     INTEGER(i_knd) :: i, j
 !_______________________________________________________________________
 
-    WRITE( ounit, 131 ) ( star, i = 1, 80 )
+    WRITE( ounit, * ) ( star, i = 1, 80 )
 
-    WRITE( ounit, 132 )
-    WRITE( ounit, 133 ) ndimen, nx, ny_gl, nz_gl, lx, ly, lz, dx, dy, dz
+    WRITE( ounit, * )
+    WRITE( ounit, * ) ndimen, nx, ny_gl, nz_gl, lx, ly, lz, dx, dy, dz
 
-    WRITE( ounit, 134 )
-    WRITE( ounit, 135 ) nmom, nang, noct, w(1)
-    WRITE( ounit, 136 )
+    WRITE( ounit, * )
+    WRITE( ounit, * ) nmom, nang, noct, w(1)
+    WRITE( ounit, * )
     SELECT CASE ( ndimen )
      CASE ( 1 )
-      WRITE( ounit, 137 ) ( mu(i), i = 1, nang )
+      WRITE( ounit, * ) ( mu(i), i = 1, nang )
      CASE ( 2 )
-      WRITE( ounit, 138 ) ( mu(i), eta(i), i = 1, nang )
+      WRITE( ounit, * ) ( mu(i), eta(i), i = 1, nang )
      CASE ( 3 )
-      WRITE( ounit, 139 ) ( mu(i), eta(i), xi(i), i = 1, nang )
+      WRITE( ounit, * ) ( mu(i), eta(i), xi(i), i = 1, nang )
     END SELECT
 
-    WRITE( ounit, 140 )
-    WRITE( ounit, 141 ) mat_opt, nmat
-    WRITE( ounit, 142 )
-    IF( mat_opt > 0 ) WRITE( ounit, 143 ) mis, mjs, mks, mie, mje, mke
+    WRITE( ounit, * )
+    WRITE( ounit, * ) mat_opt, nmat
+    WRITE( ounit, * )
+    IF( mat_opt > 0 ) WRITE( ounit, * ) mis, mjs, mks, mie, mje, mke
 
-    WRITE( ounit, 144 )
-    WRITE( ounit, 145 ) src_opt
+    WRITE( ounit, * )
+    WRITE( ounit, * ) src_opt
     IF ( src_opt < 3 ) THEN
-      WRITE( ounit, 146 )
-      WRITE( ounit, 147 ) qis, qjs, qks, qie, qje, qke
+      WRITE( ounit, * )
+      WRITE( ounit, * ) qis, qjs, qks, qie, qje, qke
     ELSE
-      WRITE( ounit, 1471 )
+      WRITE( ounit, * )
     END IF
 
-    WRITE( ounit, 148 )
-    WRITE( ounit, 149 ) ng
+    WRITE( ounit, * )
+    WRITE( ounit, * ) ng
     DO j = 1, nmat
-      WRITE( ounit, 150 ) j
-      WRITE( ounit, 151 )
-      WRITE( ounit, 152 ) ( i, sigt(j,i), siga(j,i), sigs(j,i),        &
+      WRITE( ounit, * ) j
+      WRITE( ounit, * )
+      WRITE( ounit, * ) ( i, sigt(j,i), siga(j,i), sigs(j,i),        &
                             i = 1, ng )
     END DO
 
     IF ( timedep == 1 ) THEN
-      WRITE( ounit, 153 )
-      WRITE( ounit, 154 ) tf, nsteps, dt
-      WRITE( ounit, 155 )
-      WRITE( ounit, 156 ) ( i, v(i), i = 1, ng )
+      WRITE( ounit, * )
+      WRITE( ounit, * ) tf, nsteps, dt
+      WRITE( ounit, * )
+      WRITE( ounit, * ) ( i, v(i), i = 1, ng )
     END IF
 
-    WRITE( ounit, 157 )
-    WRITE( ounit, 158 ) epsi, iitm, oitm, timedep, swp_typ, multiswp,  &
+    WRITE( ounit, * )
+    WRITE( ounit, * ) epsi, iitm, oitm, timedep, swp_typ, multiswp,  &
       angcpy, it_det, soloutp, kplane, popout, fluxp, fixup
 
-    WRITE( ounit, 181 )
-    WRITE( ounit, 182 ) npey, npez, nthreads
-    WRITE( ounit, 183 ) thread_single, thread_funneled,                &
+    WRITE( ounit, * )
+    WRITE( ounit, * ) npey, npez, nthreads
+    WRITE( ounit, * ) thread_single, thread_funneled,                &
       thread_serialized, thread_multiple
-    WRITE( ounit, 184 ) thread_level
+    WRITE( ounit, * ) thread_level
     IF ( do_nested ) THEN
-      WRITE( ounit, 185 ) nnested
+      WRITE( ounit, * ) nnested
     ELSE
-      WRITE( ounit, 186 ) nnested
+      WRITE( ounit, * ) nnested
     END IF
-    WRITE ( ounit, 187 ) pce
+    WRITE ( ounit, * ) pce
 
-    WRITE( ounit, 159 ) ( star, i = 1, 80 )
+    WRITE( ounit, * ) ( star, i = 1, 80 )
 !_______________________________________________________________________
 
 !_______________________________________________________________________
@@ -857,8 +857,8 @@ MODULE setup_module
 !   Write out the matrix in standard Fortran column-ordering
 !_______________________________________________________________________
 
-    WRITE( fu, 161 )
-    WRITE( fu, 162 ) ( ( ( ( slgg(n,l,g1,g2), n = 1, nmat ),           &
+    WRITE( fu, * )
+    WRITE( fu, * ) ( ( ( ( slgg(n,l,g1,g2), n = 1, nmat ),           &
                       l = 1, nmom ), g1 = 1, ng ), g2 = 1, ng )
 !_______________________________________________________________________
 !

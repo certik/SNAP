@@ -496,9 +496,9 @@ MODULE thrd_comm_module
 !       repeat of corner. Clean the skip_cor flag if need to re-test.
 !_______________________________________________________________________
 
-        IF ( ( tcor >= 0 ) ) THEN
+        IF ( .true. ) THEN
 !          cor = MAXLOC( tcor, 1 )
-          EXIT recv_cor_loop
+          !EXIT recv_cor_loop
         ELSE
           skip_cor = 0
         END IF
@@ -518,7 +518,7 @@ MODULE thrd_comm_module
       IF ( use_lock ) CALL plock_omp ( 'unset', 1 )
 
       IF ( reqs(cor)==nulreq .AND. reqs(ncor+cor)==nulreq ) THEN
-        EXIT send_cor_loop
+        !EXIT send_cor_loop
       ELSE
         skip_cor(cor) = 1
       END If

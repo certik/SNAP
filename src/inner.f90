@@ -171,7 +171,7 @@ MODULE inner_module
         fixup_counter(:,1,g) = fixup_counter(:,1,g) /                  &
           ( REAL(nx,r_knd) * REAL(ny,r_knd) * REAL(nz,r_knd) *         &
             REAL(nang,r_knd) * REAL(noct,r_knd) )
-        WRITE( ounit, 221 ) g, iits(g), dfmxi(g),                      &
+        WRITE( ounit, * ) g, iits(g), dfmxi(g),                      &
                             (fixup_counter(n,1,g),n=1,4)
       END DO
     END IF

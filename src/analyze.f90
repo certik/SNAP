@@ -87,12 +87,12 @@ MODULE analyze_module
       IF ( timedep == 1 ) THEN
         pop = pop/v
       ELSE
-        WRITE( ounit, 352 )
+        WRITE( ounit, * )
       END IF
 
-      WRITE( ounit, 350 ) cy, time
+      WRITE( ounit, * ) cy, time
       DO g = 1, ng
-        WRITE( ounit, 351 ) g, pop(g)
+        WRITE( ounit, * ) g, pop(g)
       END DO
       WRITE( ounit, * )
 

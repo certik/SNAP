@@ -188,7 +188,7 @@ MODULE utils_module
     IF ( iproc /= root ) RETURN
 
 !    WRITE( *, 101 ) error
-    IF ( funit > 0 ) WRITE( funit, 101 ) error
+    IF ( funit > 0 ) WRITE( funit, * ) error
 !_______________________________________________________________________
 
 !    101 FORMAT( 3X, A, / )
@@ -237,7 +237,7 @@ MODULE utils_module
 
 !    CALL EXIT ( 0 )
 
-    !STOP
+    STOP
 !_______________________________________________________________________
 !_______________________________________________________________________
 
