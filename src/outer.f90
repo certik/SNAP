@@ -130,7 +130,7 @@ MODULE outer_module
         grp_act )
   !$OMP BARRIER
 
-      IF ( ALL( inrdone ) ) EXIT inner_loop
+!      IF ( ALL( inrdone ) ) EXIT inner_loop
 
     END DO inner_loop
 
@@ -147,7 +147,7 @@ MODULE outer_module
     CALL assign_thrd_set ( do_grp, ng, ng_per_thrd, 0, nnstd_used,     &
       grp_act )
 
-    dfmxo = -HUGE( one )
+!    dfmxo = -HUGE( one )
 
   !$OMP END MASTER
   !$OMP BARRIER
@@ -178,8 +178,8 @@ MODULE outer_module
 
     CALL glmax ( dfmxo, comm_snap )
 
-    IF ( dfmxo<=100.0_r_knd*epsi .AND. ALL( inrdone ) .AND. otno/=1 )  &
-      otrdone = .TRUE.
+!    IF ( dfmxo<=100.0_r_knd*epsi .AND. ALL( inrdone ) .AND. otno/=1 )  &
+!      otrdone = .TRUE.
 
   !$OMP END MASTER
 !_______________________________________________________________________
@@ -338,10 +338,10 @@ MODULE outer_module
 !_______________________________________________________________________
 
     df = one
-    WHERE( ABS( flux0po ) < tolr )
-      flux0po = one
-      df = zero
-    END WHERE
+!    WHERE( ABS( flux0po ) < tolr )
+!      flux0po = one
+!      df = zero
+!    END WHERE
     df = ABS( flux0/flux0po - df )
 
     dfg = MAXVAL( df )
