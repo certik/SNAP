@@ -55,7 +55,8 @@ MODULE utils_module
     ierr = 0
     error = ''
 
-    narg = COMMAND_ARGUMENT_COUNT ( )
+    !narg = COMMAND_ARGUMENT_COUNT ( )
+    narg = 0
 
     IF ( narg /= 2 ) THEN
       ierr = 1
@@ -65,8 +66,8 @@ MODULE utils_module
 
     DO n = 1, 2
 
-      CALL GET_COMMAND_ARGUMENT ( n, arg )
-      arg = ADJUSTL( arg )
+      !CALL GET_COMMAND_ARGUMENT ( n, arg )
+      !arg = ADJUSTL( arg )
       IF ( arg(1:1)=='-' .OR. arg(1:1)=='<' .OR. arg(1:1)=='>' ) THEN
         ierr = 1
         error = '***ERROR: CMDARG: Bad command line entry, arg:'
@@ -120,8 +121,8 @@ MODULE utils_module
 
     tname = TRIM( fname )
 
-    OPEN( UNIT=funit, FILE=tname, STATUS=fstat, ACCESS='SEQUENTIAL',   &
-          ACTION=faction, IOSTAT=ierr )
+    !OPEN( UNIT=funit, FILE=tname, STATUS=fstat, ACCESS='SEQUENTIAL',   &
+    !      ACTION=faction, IOSTAT=ierr )
 
     IF ( ierr /= 0 ) THEN
       error = '***ERROR: OPEN_FILE: Unable to open file, unit:'
@@ -156,7 +157,7 @@ MODULE utils_module
 
     IF ( iproc /= root ) RETURN
 
-    CLOSE( UNIT=funit, IOSTAT=ierr )
+    !CLOSE( UNIT=funit, IOSTAT=ierr )
 
     IF ( ierr /= 0 ) THEN
       error = '***ERROR: CLOSE_FILE: Unable to close file, unit:'
@@ -186,11 +187,11 @@ MODULE utils_module
 
     IF ( iproc /= root ) RETURN
 
-    WRITE( *, 101 ) error
+!    WRITE( *, 101 ) error
     IF ( funit > 0 ) WRITE( funit, 101 ) error
 !_______________________________________________________________________
 
-    101 FORMAT( 3X, A, / )
+!    101 FORMAT( 3X, A, / )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
@@ -234,7 +235,7 @@ MODULE utils_module
 
     CALL pend
 
-    CALL EXIT ( 0 )
+!    CALL EXIT ( 0 )
 
     !STOP
 !_______________________________________________________________________
