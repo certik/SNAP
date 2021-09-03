@@ -154,9 +154,9 @@ MODULE setup_module
       IF ( ndimen == 1 ) THEN
         i = 1
       ELSE IF ( ndimen == 2 ) THEN
-        i = MINLOC( yzstg(1:2), 1 )
+!        i = MINLOC( yzstg(1:2), 1 )
       ELSE
-        i = MINLOC( yzstg, 1 )
+!        i = MINLOC( yzstg, 1 )
       END IF
 
       SELECT CASE ( i )
@@ -195,12 +195,12 @@ MODULE setup_module
         idle = 2*(npey-1) + 3*(npez-1)
       END IF
     ELSE
-      hnpy = CEILING( REAL( npey, r_knd ) / two )
-      hnpz = CEILING( REAL( npez, r_knd ) / two )
+!      hnpy = CEILING( REAL( npey, r_knd ) / two )
+!      hnpz = CEILING( REAL( npez, r_knd ) / two )
       idle = 2 * ( hnpy + hnpz - 2 )
     END IF
 
-    mgpt = CEILING( REAL( ng, r_knd ) / REAL( nthreads, r_knd ) )
+!    mgpt = CEILING( REAL( ng, r_knd ) / REAL( nthreads, r_knd ) )
     stgs = nc*noct*mgpt + idle
 
     pce = REAL( nc*noct*ng, r_knd ) / REAL( nthreads*stgs, r_knd )
@@ -478,10 +478,10 @@ MODULE setup_module
     IF ( mat_opt > 0 ) THEN
       DO k = k1, k2
         IF ( klb<=k .AND. k<=kub ) THEN
-          kk = MOD( k-1, nz ) + 1
+!          kk = MOD( k-1, nz ) + 1
           DO j = j1, j2
             IF ( jlb<=j .AND. j<=jub ) THEN
-              jj = MOD( j-1, ny ) + 1
+!              jj = MOD( j-1, ny ) + 1
               DO i = i1, i2
                 mat(i,jj,kk) = 2
               END DO
@@ -575,10 +575,10 @@ MODULE setup_module
 
     DO k = k1, k2
       IF ( klb<=k .AND. k<=kub ) THEN
-        kk = MOD( k-1, nz ) + 1
+!        kk = MOD( k-1, nz ) + 1
         DO j = j1, j2
           IF ( jlb<=j .AND. j<=jub ) THEN
-            jj = MOD( j-1, ny ) + 1
+!            jj = MOD( j-1, ny ) + 1
             DO i = i1, i2
               qi(i,jj,kk,:) = one
             END DO
