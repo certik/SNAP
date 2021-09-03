@@ -1,12 +1,4 @@
-SUBROUTINE translv ( ndpwds )
-
-!-----------------------------------------------------------------------
-!
-! Solution driver. Contains the time and outer loops. Calls for outer
-! iteration work. Checks convergence and handles eventual output.
-!
-!-----------------------------------------------------------------------
-
+module translv_mod
   USE global_module, ONLY: i_knd, r_knd, ounit, zero, half, one, two
 
   USE plib_module, ONLY: glmax, comm_snap, iproc, root, ichunk,        &
@@ -39,6 +31,18 @@ SUBROUTINE translv ( ndpwds )
   USE analyze_module, ONLY: analyze_pop_calc
 
   IMPLICIT NONE
+
+contains
+
+SUBROUTINE translv ( ndpwds )
+
+!-----------------------------------------------------------------------
+!
+! Solution driver. Contains the time and outer loops. Calls for outer
+! iteration work. Checks convergence and handles eventual output.
+!
+!-----------------------------------------------------------------------
+
 
 !-----------------------------------------------------------------------
 !
@@ -148,10 +152,10 @@ SUBROUTINE translv ( ndpwds )
       sf = REAL( 2*cy - 1, r_knd ) / REAL( 2*cy-3, r_knd )
 
     IF ( cy > 1 ) THEN
-      ptr_tmp => ptr_out
-      ptr_out => ptr_in
-      ptr_in  => ptr_tmp
-      NULLIFY( ptr_tmp )
+!      ptr_tmp => ptr_out
+!      ptr_out => ptr_in
+!      ptr_in  => ptr_tmp
+!      NULLIFY( ptr_tmp )
     END IF
 !_______________________________________________________________________
 !
@@ -374,23 +378,25 @@ SUBROUTINE translv ( ndpwds )
   tgrind = tslv*1.0E9_r_knd / tmp
 !_______________________________________________________________________
 
-  201 FORMAT( 10X, 'keyword Iteration Monitor', /, 80A )
-  202 FORMAT( /, 1X, 30A, /, 2X, 'Time Cycle ', I3 )
-  203 FORMAT( 2X, 'Outer' )
-  204 FORMAT( 1X, 20A, /, 2X, 'Outer ', I3 )
-  205 FORMAT( 2X, I3, 4X, 'Dfmxo=', ES11.4, 4X, 'No. Inners=', I5 )
-  206 FORMAT( /, 2X, 'Cycle=', I4, 4X, 'Time=', ES11.4, 4X, 'No. ',    &
-              'Outers=', I4, 4X, 'No. Inners=', I5 )
-  207 FORMAT( /, 2X, '*WARNING: Unconverged outer iterations', /, 2X,  &
-             'Cycle=', I4, 4X, 'Time=', ES11.4, 4X, 'No. Outers=', I4, &
-             4X, 'No. Inners=', I5, / )
-  208 FORMAT( /, 2X, 'No. Outers=', I4, 4X, 'No. Inners=', I5 )
-  209 FORMAT( /, 2X, '*WARNING: Unconverged outer iteration!', /, 2X,  &
-              'No. Outers=', I4, 4X, 'No. Inners=', I5, / )
-  210 FORMAT( /, 1X, 30A, /, 2X, 'Total inners for all time steps, ',  &
-              'outers = ', I6 )
-  211 FORMAT( /, 80A, / )
+!  201 FORMAT( 10X, 'keyword Iteration Monitor', /, 80A )
+!  202 FORMAT( /, 1X, 30A, /, 2X, 'Time Cycle ', I3 )
+!  203 FORMAT( 2X, 'Outer' )
+!  204 FORMAT( 1X, 20A, /, 2X, 'Outer ', I3 )
+!  205 FORMAT( 2X, I3, 4X, 'Dfmxo=', ES11.4, 4X, 'No. Inners=', I5 )
+!  206 FORMAT( /, 2X, 'Cycle=', I4, 4X, 'Time=', ES11.4, 4X, 'No. ',    &
+!              'Outers=', I4, 4X, 'No. Inners=', I5 )
+!  207 FORMAT( /, 2X, '*WARNING: Unconverged outer iterations', /, 2X,  &
+!             'Cycle=', I4, 4X, 'Time=', ES11.4, 4X, 'No. Outers=', I4, &
+!             4X, 'No. Inners=', I5, / )
+!  208 FORMAT( /, 2X, 'No. Outers=', I4, 4X, 'No. Inners=', I5 )
+!  209 FORMAT( /, 2X, '*WARNING: Unconverged outer iteration!', /, 2X,  &
+!              'No. Outers=', I4, 4X, 'No. Inners=', I5, / )
+!  210 FORMAT( /, 1X, 30A, /, 2X, 'Total inners for all time steps, ',  &
+!              'outers = ', I6 )
+!  211 FORMAT( /, 80A, / )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
 END SUBROUTINE translv
+
+end module
