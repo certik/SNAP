@@ -13,7 +13,7 @@ MODULE mkba_sweep_module
   USE plib_module, ONLY: ichunk, firsty, lasty, firstz, lastz,         &
     nnested
 
-  USE geom_module, ONLY: nx, hi, hj, hk, ndimen, ny, nz, ndiag, diag, nc
+  USE geom_module, ONLY: nx, hi, hj, hk, ndimen, ny, nz, ndiag, nc
 
   USE sn_module, ONLY: cmom, nang, mu, eta, xi, w, noct
 
@@ -163,21 +163,21 @@ MODULE mkba_sweep_module
   !$OMP PARALLEL DO NUM_THREADS(nnstd_used) IF(nnstd_used>1)           &
   !$OMP& SCHEDULE(STATIC,1) PROC_BIND(CLOSE)  DEFAULT(SHARED)          &
   !$OMP& PRIVATE(n,ic,i,j,k,l,psi,pc,hv,sum_hv,fxhv,sum_hv_n,den)
-        line_loop: DO n = 1, diag(d)%len
+        line_loop: DO n = 1, 5 !diag(d)%len
 !_______________________________________________________________________
 !
 !         Set the indices chunk indices and the global i index
 !_______________________________________________________________________
 
-          ic = diag(d)%cell_id(n)%ic
+!          ic = diag(d)%cell_id(n)%ic
           IF ( ist < 0 ) ic = ichunk - ic + 1
 
           i = (ich-1)*ichunk + ic
 
-          j = diag(d)%cell_id(n)%j
+!          j = diag(d)%cell_id(n)%j
           IF ( jst < 0 ) j = ny - j + 1
 
-          k = diag(d)%cell_id(n)%k
+!          k = diag(d)%cell_id(n)%k
           IF ( kst < 0 ) k = nz - k + 1
 !_______________________________________________________________________
 !
