@@ -94,10 +94,10 @@ PROGRAM snap_main
 
   USE dealloc_module
 
-  USE plib_module, ONLY: pinit, iproc, root, comm_snap, bcast,         &
+  USE plib_module, ONLY: pinit, comm_snap, bcast,         &
     pcomm_set, pinit_omp
 
-  USE control_module, ONLY: otrdone, swp_typ
+!  USE control_module, ONLY: otrdone, swp_typ
 
   IMPLICIT NONE
 !_______________________________________________________________________
@@ -124,8 +124,6 @@ PROGRAM snap_main
 
   CALL pinit ( t1 )
 
-  CALL wtime ( t2 )
-  tparset = tparset + t2 - t1
 !_______________________________________________________________________
 !
 ! Read the command line arguments to get i/o file names. Open the two
@@ -197,7 +195,7 @@ PROGRAM snap_main
 ! Call for the problem solution
 !_______________________________________________________________________
 
-  CALL translv ( ndpwds )
+!  CALL translv ( ndpwds )
 !_______________________________________________________________________
 !
 ! Output the results. Print the timing summary.
@@ -229,17 +227,17 @@ PROGRAM snap_main
     CALL stop_run ( 1, 0, 0, 0 )
   END IF
 
-  IF ( otrdone ) THEN
+!  IF ( otrdone ) THEN
     CALL stop_run ( 1, 0, 0, 1 )
-  ELSE
-    CALL stop_run ( 1, 0, 0, 2 )
-  END IF
+!  ELSE
+!    CALL stop_run ( 1, 0, 0, 2 )
+!  END IF
 !_______________________________________________________________________
 
-  501 FORMAT( 2X, 'Total Execution time', T41, ES11.4, / )
-  502 FORMAT( 2X, 'Grind Time (nanoseconds)', 8X, ES11.4, /, /, 80A )
-  503 FORMAT( /, 'Allocated words (double precision) per rank',   &
-                T61, I15, /, /, 80A )
+!  501 FORMAT( 2X, 'Total Execution time', T41, ES11.4, / )
+!  502 FORMAT( 2X, 'Grind Time (nanoseconds)', 8X, ES11.4, /, /, 80A )
+!  503 FORMAT( /, 'Allocated words (double precision) per rank',   &
+!                T61, I15, /, /, 80A )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
