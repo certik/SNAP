@@ -315,25 +315,25 @@ MODULE mkba_sweep_module
             hv = one
             sum_hv = nedg * nang
 
-            fixup_loop: DO
+!            fixup_loop: DO
 
               fxhv(:,1) = two*pc - psii(:,j,k)
-              WHERE( fxhv(:,1) < zero ) hv(:,1) = zero
+!              WHERE( fxhv(:,1) < zero ) hv(:,1) = zero
               sum_hv_n = SUM( hv(:,1) )
 
               fxhv(:,2) = two*pc - psij(:,ic,k)
-              WHERE( fxhv(:,2) < zero ) hv(:,2) = zero
+!              WHERE( fxhv(:,2) < zero ) hv(:,2) = zero
               sum_hv_n = sum_hv_n + SUM( hv(:,2) )
 
               IF ( ndimen == 3 ) THEN
                 fxhv(:,3) = two*pc - psik(:,ic,j)
-                WHERE( fxhv(:,3) < zero ) hv(:,3) = zero
+!                WHERE( fxhv(:,3) < zero ) hv(:,3) = zero
                 sum_hv_n = sum_hv_n + SUM( hv(:,3) )
               END IF
 
               IF ( vdelt /= zero ) THEN
                 fxhv(:,4) = two*pc - ptr_in(:,i,j,k,oct)
-                WHERE( fxhv(:,4) < zero ) hv(:,4) = zero
+!                WHERE( fxhv(:,4) < zero ) hv(:,4) = zero
                 sum_hv_n = sum_hv_n + SUM( hv(:,4) )
               END IF
 !_______________________________________________________________________
@@ -341,7 +341,7 @@ MODULE mkba_sweep_module
 !             Exit loop when all angles are fixed up, i.e., no hv change
 !_______________________________________________________________________
 
-              IF ( sum_hv == sum_hv_n ) EXIT fixup_loop
+!              IF ( sum_hv == sum_hv_n ) EXIT fixup_loop
               sum_hv = sum_hv_n
 !_______________________________________________________________________
 !
@@ -364,16 +364,16 @@ MODULE mkba_sweep_module
                   xi*hk*hv(:,3)
               END IF
 
-              WHERE( pc <= zero ) den = zero
+!              WHERE( pc <= zero ) den = zero
 
-              WHERE( den < tolr )
-                pc = zero
-                den = one
-              END WHERE
+!              WHERE( den < tolr )
+!                pc = zero
+!                den = one
+!              END WHERE
 
               pc = pc / den
 
-            END DO fixup_loop
+!            END DO fixup_loop
 !_______________________________________________________________________
 !
 !           Fixup done: update counts and compute edges with resolved
