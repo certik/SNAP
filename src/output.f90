@@ -103,7 +103,7 @@ MODULE output_module
 
       k = nz_gl/2 + 1
       IF ( kplane /= 0 ) k = kplane
-      kloc = MOD( k-1, nz ) + 1
+!      kloc = MOD( k-1, nz ) + 1
 !_______________________________________________________________________
 !
 !     Loops over groups. Send/Recv message. Print flux.
@@ -145,13 +145,13 @@ MODULE output_module
           DO i = 1, nx, 6
             is = i + 6 - 1
             IF ( is > nx ) is = nx
-            WRITE( ounit, FMT=303, ADVANCE='NO' )
+!            WRITE( ounit, FMT=303, ADVANCE='NO' )
             DO ii = i, is
-              WRITE( ounit, FMT=304, ADVANCE='NO' ) ii
+!              WRITE( ounit, FMT=304, ADVANCE='NO' ) ii
             END DO
-            WRITE( ounit, FMT=305, ADVANCE='YES' )
+!            WRITE( ounit, FMT=305, ADVANCE='YES' )
             DO j = ny_gl, 1, -1
-              WRITE( ounit, 306 ) j, ( fprnt(ii,j), ii = i, is )
+!              WRITE( ounit, 306 ) j, ( fprnt(ii,j), ii = i, is )
             END DO
           END DO
 
@@ -187,14 +187,6 @@ MODULE output_module
     tout = t2 - t1
 !_______________________________________________________________________
 
-    301 FORMAT( 10X, 'keyword Scalar Flux Solution', /, 80A )
-    302 FORMAT( /, 1X, 35A, /, 2X, 'Group= ', I3, 2X, ' Z Mid-Plane= ',&
-                I4, /, 1X, 35A )
-    303 FORMAT( /, 5X, 'y' )
-    304 FORMAT( 4X, 'x ', I4, 2X )
-    305 FORMAT( 1X )
-    306 FORMAT( 2X, I4, 6(1X, ES11.4) )
-    307 FORMAT( /, 80A, / )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
@@ -316,7 +308,7 @@ MODULE output_module
       DO g = 1, ng
         DO k = 1, nz_gl
 
-          kloc = MOD( k-1, nz ) + 1
+!          kloc = MOD( k-1, nz ) + 1
           IF ( klb<=k .AND. k<=kub ) THEN
             mtag = l*ng*nz + (g-1)*nz + kloc
             IF ( l == 1 ) THEN
@@ -360,15 +352,6 @@ MODULE output_module
     END IF
 !_______________________________________________________________________
 
-    321 FORMAT( 1X, 'flux(nx,ny,nz,ng) echo', /, 1X, 'Column-order ',  &
-                'loops: x-cells (fastest), y-cells, z-cells, groups ', &
-                '(slowest)' )
-    322 FORMAT( 1X, 'flux(nx,ny,nz,ng) and fluxm(cmom-1,nx,ny,nz,ng)', &
-                ' echo', /, 1X, 'Column-order loops by moment:', /,    &
-                1X, 'x-cells (fastest), y-cells, z-cells, groups, ',   &
-                'moments (slowest)' )
-    323 FORMAT( /, 2X, 'Moment = ', I1 )
-    324 FORMAT( 4(2X, ES17.10) )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
