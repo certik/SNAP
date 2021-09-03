@@ -81,7 +81,7 @@ MODULE inner_module
     CALL wtime ( t1 )
 
     do_grp = 1
-    WHERE( inrdone ) do_grp = 0
+!    WHERE( inrdone ) do_grp = 0
 
     CALL assign_thrd_set ( do_grp, ng, ng_per_thrd, ny*nz, nnstd_used, &
       grp_act )
@@ -132,7 +132,7 @@ MODULE inner_module
 !_______________________________________________________________________
 
     do_grp = 1
-    WHERE( inrdone ) do_grp = 0
+!    WHERE( inrdone ) do_grp = 0
 
     CALL assign_thrd_set ( do_grp, ng, ng_per_thrd, 0, nnstd_used,     &
       grp_act )
@@ -164,7 +164,7 @@ MODULE inner_module
   !$OMP MASTER
 
     CALL glmax ( dfmxi, ng, comm_snap )
-    WHERE( dfmxi <= epsi ) inrdone = .TRUE.
+!    WHERE( dfmxi <= epsi ) inrdone = .TRUE.
 
     IF ( iproc==root .AND. it_det==1 ) THEN
       DO g = 1, ng
@@ -179,8 +179,8 @@ MODULE inner_module
   !$OMP END MASTER
 !_______________________________________________________________________
 
-    221 FORMAT( 4X, 'Group ', I3, 4X, ' Inner ', I5, 4X, ' Dfmxi ',    &
-                ES11.4, '     Fixup x/y/z/t ', 4(ES9.2,1x) )
+!    221 FORMAT( 4X, 'Group ', I3, 4X, ' Inner ', I5, 4X, ' Dfmxi ',    &
+!                ES11.4, '     Fixup x/y/z/t ', 4(ES9.2,1x) )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
@@ -325,10 +325,10 @@ MODULE inner_module
     iits = inno
 
     df = one
-    WHERE( ABS( flux0pi ) < tolr )
-      flux0pi = one
-      df = zero
-    END WHERE
+!    WHERE( ABS( flux0pi ) < tolr )
+!      flux0pi = one
+!      df = zero
+!    END WHERE
     df = ABS( flux0/flux0pi - df )
 
     dfmxi = MAXVAL( df )
