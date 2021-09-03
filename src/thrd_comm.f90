@@ -75,7 +75,7 @@ MODULE thrd_comm_module
     nstd_set_size  = 0
     tasks_per_thrd = 0
 
-    ntasks = COUNT( do_task > 0 )
+!    ntasks = COUNT( do_task > 0 )
     thrd_set_size = MIN( ntasks, nthreads )
 
     IF ( thrd_set_size == 0 ) THEN
@@ -94,7 +94,7 @@ MODULE thrd_comm_module
 
     n_loop: DO n = 1, tasks_per_thrd
       DO t = 1, thrd_set_size
-        next = MAXLOC( do_task, 1 )
+!        next = MAXLOC( do_task, 1 )
         IF ( do_task(next) == 0 ) EXIT n_loop
         task_act(n,t) = next
         do_task(next) = 0
@@ -464,7 +464,7 @@ MODULE thrd_comm_module
     cor = 0
     skip_cor = 0
 
-    send_cor_loop: DO
+!    send_cor_loop: DO
 
       indx = 0
       tcor = -1
@@ -475,7 +475,7 @@ MODULE thrd_comm_module
 !     prioritizing next task
 !_______________________________________________________________________
 
-      recv_cor_loop: DO
+!      recv_cor_loop: DO
 
         IF ( use_lock ) CALL plock_omp ( 'set', 1 )
 
@@ -496,14 +496,14 @@ MODULE thrd_comm_module
 !       repeat of corner. Clean the skip_cor flag if need to re-test.
 !_______________________________________________________________________
 
-        IF ( ANY( tcor >= 0 ) ) THEN
-          cor = MAXLOC( tcor, 1 )
+        IF ( ( tcor >= 0 ) ) THEN
+!          cor = MAXLOC( tcor, 1 )
           EXIT recv_cor_loop
         ELSE
           skip_cor = 0
         END IF
 
-      END DO recv_cor_loop
+!      END DO recv_cor_loop
 !_______________________________________________________________________
 !
 !     For selected corner, test if the send buffer is also free. Exit if
@@ -523,7 +523,7 @@ MODULE thrd_comm_module
         skip_cor(cor) = 1
       END If
 
-    END DO send_cor_loop
+!    END DO send_cor_loop
 !_______________________________________________________________________
 !_______________________________________________________________________
 
@@ -609,25 +609,25 @@ MODULE thrd_comm_module
 !_______________________________________________________________________
 !_______________________________________________________________________
 
-    SELECT CASE ( op )
+!    SELECT CASE ( op )
 
-      CASE ( 'set' )
+!      CASE ( 'set' )
 
-  !$OMP BARRIER
-        IF ( t < nthreads ) CALL plock_omp ( 'set', t+1 )
-  !$OMP BARRIER
-        CALL plock_omp ( 'set', t )
+!  !$OMP BARRIER
+!        IF ( t < nthreads ) CALL plock_omp ( 'set', t+1 )
+!  !$OMP BARRIER
+!        CALL plock_omp ( 'set', t )
 
-      CASE ( 'unset' )
+!      CASE ( 'unset' )
 
-        IF ( t < nthreads ) CALL plock_omp ( 'unset', t+1 )
-        CALL plock_omp ( 'unset', t )
+!        IF ( t < nthreads ) CALL plock_omp ( 'unset', t+1 )
+!        CALL plock_omp ( 'unset', t )
 
-      CASE DEFAULT
+!      CASE DEFAULT
 
-        RETURN
+!        RETURN
 
-    END SELECT
+!    END SELECT
 !_______________________________________________________________________
 !_______________________________________________________________________
 
