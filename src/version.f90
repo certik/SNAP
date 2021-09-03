@@ -53,20 +53,20 @@ MODULE version_module
 !   information about the code.
 !_______________________________________________________________________
 
-    CALL DATE_AND_TIME (rc(1), rc(2), rc(3), dttm)
+    !CALL DATE_AND_TIME (rc(1), rc(2), rc(3), dttm)
 
-    WRITE( ounit, 111 )
-    WRITE( ounit, 112 ) cvers
-    WRITE( ounit, 113 ) vdate
-    WRITE( ounit, FMT=114, ADVANCE='NO' ) dttm(2), dttm(3), dttm(1)
-    WRITE( ounit, 115 ) dttm(5), dttm(6), dttm(7)
+    !WRITE( ounit, 111 )
+    !WRITE( ounit, 112 ) cvers
+    !WRITE( ounit, 113 ) vdate
+    !WRITE( ounit, FMT=114, ADVANCE='NO' ) dttm(2), dttm(3), dttm(1)
+    !WRITE( ounit, 115 ) dttm(5), dttm(6), dttm(7)
 !_______________________________________________________________________
 
-    111 FORMAT( 1X, 'SNAP: SN (Discrete Ordinates) Application Proxy' )
-    112 FORMAT( 1X, 'Version Number..  ', A5 )
-    113 FORMAT( 1X, 'Version Date..  ', A10 )
-    114 FORMAT( 1X, 'Ran on ', I2, '-', I2, '-', I4 )
-    115 FORMAT( ' at time ', I2, ':', I2, ':', I2 )
+    !111 FORMAT( 1X, 'SNAP: SN (Discrete Ordinates) Application Proxy' )
+    !112 FORMAT( 1X, 'Version Number..  ', A5 )
+    !113 FORMAT( 1X, 'Version Date..  ', A10 )
+    !114 FORMAT( 1X, 'Ran on ', I2, '-', I2, '-', I4 )
+    !115 FORMAT( ' at time ', I2, ':', I2, ':', I2 )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
