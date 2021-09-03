@@ -288,20 +288,20 @@ MODULE dim3_sweep_module
         hv = one
         sum_hv = SUM( hv )
 
-        fixup_loop: DO
+!        fixup_loop: DO
 
           fxhv(:,1) = two*pc - psii(:,j,k)
           fxhv(:,2) = two*pc - psij(:,ic,k)
           IF ( ndimen == 3 ) fxhv(:,3) = two*pc - psik(:,ic,j)
           IF ( vdelt /= zero ) fxhv(:,4) = two*pc - ptr_in(:,i,j,k)
 
-          WHERE ( fxhv < zero ) hv = zero
+!          WHERE ( fxhv < zero ) hv = zero
 !_______________________________________________________________________
 !
 !         Exit loop when all angles are fixed up, i.e., no change in hv
 !_______________________________________________________________________
 
-          IF ( sum_hv == SUM( hv ) ) EXIT fixup_loop
+!          IF ( sum_hv == SUM( hv ) ) EXIT fixup_loop
           sum_hv = SUM( hv )
 !_______________________________________________________________________
 !
@@ -324,16 +324,16 @@ MODULE dim3_sweep_module
               xi*hk*hv(:,3)
           END IF
 
-          WHERE( pc <= zero ) den = zero
+!          WHERE( pc <= zero ) den = zero
 
-          WHERE( den < tolr )
-            pc = zero
-            den = one
-          END WHERE
+!          WHERE( den < tolr )
+!            pc = zero
+!            den = one
+!          END WHERE
 
           pc = pc / den
 
-        END DO fixup_loop
+!        END DO fixup_loop
 !_______________________________________________________________________
 !
 !       Fixup done: update counts and compute edges with resolved center
