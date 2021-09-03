@@ -56,51 +56,6 @@ MODULE input_module
 
     REAL(r_knd) :: t1, t2
 
-    NAMELIST / invar / npey, npez, ichunk, nthreads, ndimen, nx, ny,   &
-      nz, lx, ly, lz, nmom, nang, ng, epsi, iitm, oitm, timedep, tf,   &
-      nsteps, mat_opt, src_opt, scatp, swp_typ, multiswp, it_det,      &
-      fluxp, fixup, nnested, soloutp, kplane, popout, angcpy
-!_______________________________________________________________________
-!
-!   Read the input file. Echo to output file. Call for an input variable
-!   check. Only root reads, echoes, checks input.
-!_______________________________________________________________________
-
-    CALL wtime ( t1 )
-
-    ierr = 0
-
-    IF ( iproc == root ) READ( iunit, NML=invar, IOSTAT=ierr )
-    CALL bcast ( ierr, comm_snap, root )
-    IF ( ierr /= 0 ) THEN
-      error = '***ERROR: READ_INPUT: Problem reading input file'
-      CALL print_error ( 0, error )
-      CALL print_error ( ounit, error )
-      CALL stop_run ( 0, 0, 0, 0 )
-    END IF
-
-    IF ( iproc == root ) THEN
-      CALL input_echo
-      CALL input_check ( ierr )
-    END IF
-
-    CALL bcast ( ierr, comm_snap, root )
-    IF ( ierr /= 0 ) THEN
-      error = '***ERROR: READ_INPUT: Input file errors'
-      CALL print_error ( ounit, error )
-      CALL stop_run ( 0, 0, 0, 0 )
-    END IF
-!_______________________________________________________________________
-!
-!   Broadcast the data to all processes.
-!_______________________________________________________________________
-
-    CALL input_var_bcast
-
-    CALL wtime ( t2 )
-    tinp = t2 - t1
-!_______________________________________________________________________
-!_______________________________________________________________________
 
   END SUBROUTINE input_read
 
@@ -134,52 +89,6 @@ MODULE input_module
       multiswp, angcpy, it_det, soloutp, kplane, popout, fluxp, fixup
     WRITE( ounit, 121 ) ( star, i = 1, 80 )
 !_______________________________________________________________________
-
-    121 FORMAT( /, 80A, / )
-    122 FORMAT( 10X,                                                   &
-                'keyword Input Echo - Values from input or default', /,&
-                80A, / )
-
-    123 FORMAT( 2X, 'NML=invar' )
-
-    124 FORMAT( 5X, 'npey= ', I5, /,                                   &
-                5X, 'npez= ', I5, /,                                   &
-                5X, 'ichunk= ', I5, /,                                 &
-                5X, 'nthreads= ', I5, /,                               &
-                5X, 'nnested= ', I3 )
-
-    125 FORMAT( 5X, 'ndimen= ', I2, /,                                 &
-                5X, 'nx= ', I5, /,                                     &
-                5X, 'ny= ', I5, /,                                     &
-                5X, 'nz= ', I5 )
-
-    126 FORMAT( 5X, 'lx= ', ES11.4, /,                                 &
-                5X, 'ly= ', ES11.4, /,                                 &
-                5X, 'lz= ', ES11.4 )
-
-    127 FORMAT( 5X, 'nmom= ', I3, /,                                   &
-                5X, 'nang= ', I4 )
-
-    128 FORMAT( 5X, 'ng= ', I4, /,                                     &
-                5X, 'mat_opt= ', I2, /,                                &
-                5X, 'src_opt= ', I2, /,                                &
-                5X, 'scatp= ', I2 )
-
-    129 FORMAT( 5X, 'epsi= ', ES11.4, /,                               &
-                5X, 'iitm= ', I3, /,                                   &
-                5X, 'oitm= ', I4, /,                                   &
-                5X, 'timedep= ', I2, /,                                &
-                5X, 'tf= ', ES11.4, /,                                 &
-                5X, 'nsteps= ', I5, /,                                 &
-                5X, 'swp_typ= ', I2, /,                                &
-                5X, 'multiswp= ', I2, /,                               &
-                5X, 'angcpy= ', I2, /,                                 &
-                5X, 'it_det= ', I2, /,                                 &
-                5X, 'soloutp= ', I2, /,                                &
-                5X, 'kplane= ', I4, /,                                 &
-                5X, 'popout= ', I2, /,                                 &
-                5X, 'fluxp= ', I2, /,                                  &
-                5X, 'fixup= ', I2 )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
@@ -224,17 +133,6 @@ MODULE input_module
       CALL print_error ( ounit, error )
     END IF
 
-    IF ( ndimen>1 .AND. MOD( ny, npey )/=0 ) THEN
-      ierr = ierr + 1
-      error = '***ERROR: INPUT_CHECK: NPEY must divide evenly into NY'
-      CALL print_error ( ounit, error )
-    END IF
-
-    IF ( ndimen>2 .AND. MOD( nz, npez )/=0 ) THEN
-      ierr = ierr + 1
-      error = '***ERROR: INPUT_CHECK: NPEZ must divide evenly into NZ'
-      CALL print_error ( ounit, error )
-    END IF
 
     IF ( ndimen<2 .AND. npey/=1 ) THEN
       ierr = ierr + 1
@@ -262,12 +160,6 @@ MODULE input_module
     END IF
 
     IF ( ndimen==1 .AND. ichunk/=nx ) ichunk = nx
-
-    IF ( MOD( nx, ichunk ) /= 0 ) THEN
-      ierr = ierr + 1
-      error = '***ERROR: INPUT_CHECK: ICHUNK must divide evenly into NX'
-      CALL print_error ( ounit, error )
-    END IF
 
     IF ( nthreads < 1 ) THEN
       nthreads = 1
