@@ -64,7 +64,7 @@ MODULE sweep_module
 !_______________________________________________________________________
 
     INTEGER(i_knd) :: cor, jd, kd, g, nc_tot, nstg, n, nulreq,         &
-      dummy(2)=(/0, 0/)
+      dummy(2)
 
     INTEGER(i_knd), DIMENSION(ncor) :: mtag, ic_op, gc, g_op
 
@@ -81,7 +81,7 @@ MODULE sweep_module
   !$OMP MASTER
 
     do_grp = 1
-    WHERE ( inrdone ) do_grp = 0
+!    WHERE ( inrdone ) do_grp = 0
 
     CALL assign_thrd_set ( do_grp, ng, ng_per_thrd, ndiag, nnstd_used, &
       grp_act )
@@ -102,7 +102,7 @@ MODULE sweep_module
 
       fixup_counter(:,:,g) = zero
 
-      fmin(g) = HUGE( one )
+!      fmin(g) = HUGE( one )
       fmax(g) = zero
 
       flkx(:,:,:,g) = zero
@@ -207,9 +207,9 @@ MODULE sweep_module
 !     from starting corners (2 in 2D, 4 in 3D). Exit when all work done.
 !_______________________________________________________________________
 
-      done_loop: DO
+!      done_loop: DO
 
-        IF ( ALL( done ) ) EXIT
+!        IF ( ALL( done ) ) EXIT
 !_______________________________________________________________________
 !
 !       Call to non-blocking receive for the corner that has
@@ -281,7 +281,7 @@ MODULE sweep_module
 !     End loop over all operations. End multiswp selection.
 !_______________________________________________________________________
 
-      END DO done_loop
+!      END DO done_loop
 
     END IF
 !_______________________________________________________________________
