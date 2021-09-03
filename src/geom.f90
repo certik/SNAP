@@ -83,16 +83,16 @@ MODULE geom_module
 ! diag(ndiag)       - array of diagonal lines/planes information
 !_______________________________________________________________________
 
-  TYPE cell_id_type
-    INTEGER(i_knd) :: ic, j, k
-  END TYPE cell_id_type
-
-  TYPE diag_type
-    INTEGER(i_knd) :: len
-    TYPE(cell_id_type), ALLOCATABLE, DIMENSION(:) :: cell_id
-  END TYPE diag_type
-
-  TYPE(diag_type), ALLOCATABLE, DIMENSION(:) :: diag
+!  TYPE cell_id_type
+!    INTEGER(i_knd) :: ic, j, k
+!  END TYPE cell_id_type
+!
+!  TYPE diag_type
+!    INTEGER(i_knd) :: len
+!    TYPE(cell_id_type), ALLOCATABLE, DIMENSION(:) :: cell_id
+!  END TYPE diag_type
+!
+!  TYPE(diag_type), ALLOCATABLE, DIMENSION(:) :: diag
 
 
   CONTAINS
@@ -144,10 +144,10 @@ MODULE geom_module
 
       ndiag = ichunk + ny + nz - 2
 
-      ALLOCATE( diag(ndiag), indx(ndiag), STAT=ierr )
+!      ALLOCATE( diag(ndiag), indx(ndiag), STAT=ierr )
       IF ( ierr /= 0 ) RETURN
 
-      diag%len = 0
+!      diag%len = 0
       indx = 0
 !_______________________________________________________________________
 !
@@ -168,9 +168,9 @@ MODULE geom_module
 !_______________________________________________________________________
 
       DO nn = 1, ndiag
-        ALLOCATE( diag(nn)%cell_id(ing), STAT=ierr )
+!        ALLOCATE( diag(nn)%cell_id(ing), STAT=ierr )
         IF ( ierr /= 0 ) RETURN
-        ndpwds = ndpwds + SIZE( diag )
+!        ndpwds = ndpwds + SIZE( diag )
       END DO
 !_______________________________________________________________________
 !
@@ -222,12 +222,12 @@ MODULE geom_module
 !   Deallocate the diagonal related arrays with swp_typ
 !_______________________________________________________________________
 
-    IF ( swp_typ == 1 ) THEN
-      DO i = 1, ndiag
-        DEALLOCATE( diag(i)%cell_id )
-      END DO
-      DEALLOCATE( diag )
-    END IF
+!    IF ( swp_typ == 1 ) THEN
+!      DO i = 1, ndiag
+!        DEALLOCATE( diag(i)%cell_id )
+!      END DO
+!      DEALLOCATE( diag )
+!    END IF
 !_______________________________________________________________________
 !_______________________________________________________________________
 
