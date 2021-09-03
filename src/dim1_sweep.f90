@@ -151,18 +151,18 @@ MODULE dim1_sweep_module
 
         pc = pc * dinv(:,i)
 
-        fixup_loop: DO
+!        fixup_loop: DO
 
           fxhv(:,1) = two*pc - psii
           IF ( vdelt /= zero ) fxhv(:,2) = two*pc - ptr_in(:,i,1,1)
 
-          WHERE ( fxhv < zero ) hv = zero
+!          WHERE ( fxhv < zero ) hv = zero
 !_______________________________________________________________________
 !
 !         Exit loop when all angles are fixed up
 !_______________________________________________________________________
 
-          IF ( sum_hv == SUM( hv ) ) EXIT fixup_loop
+!          IF ( sum_hv == SUM( hv ) ) EXIT fixup_loop
           sum_hv = SUM( hv )
 !_______________________________________________________________________
 !
@@ -177,16 +177,16 @@ MODULE dim1_sweep_module
 
           den = t_xs(i) + mu*hi*hv(:,1) + vdelt*hv(:,2)
 
-          WHERE( pc <= zero ) den = zero
+!          WHERE( pc <= zero ) den = zero
 
-          WHERE( den < tolr )
-            pc = zero
-            den = one
-          END WHERE
+!          WHERE( den < tolr )
+!            pc = zero
+!            den = one
+!          END WHERE
 
           pc = pc / den
 
-        END DO fixup_loop
+!        END DO fixup_loop
 !_______________________________________________________________________
 !
 !       Fixup done: update counts and compute edges with resolved center
