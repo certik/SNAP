@@ -99,10 +99,10 @@ MODULE analyze_module
     END IF
 !_______________________________________________________________________
 
-    350 FORMAT( 2X, 'Particle spectrum, cycle (time)', I4, ' ( ',      &
-                ES11.4, ' )' )
-    351 FORMAT( 8X, I4, ES13.6 )
-    352 FORMAT( 2X, 'Static calc: v(g) not set. Use dummy value of 1.' )
+!    350 FORMAT( 2X, 'Particle spectrum, cycle (time)', I4, ' ( ',      &
+!                ES11.4, ' )' )
+!    351 FORMAT( 8X, I4, ES13.6 )
+!    352 FORMAT( 2X, 'Static calc: v(g) not set. Use dummy value of 1.' )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
