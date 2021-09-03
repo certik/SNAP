@@ -654,14 +654,14 @@ MODULE setup_module
 
       IF ( g > 1 ) THEN
         t = one / REAL( g-1, r_knd )
-        slgg(1,1,g,1:(g-1)) = 0.1_r_knd*sigs(1,g)*t
+!        slgg(1,1,g,1:(g-1)) = 0.1_r_knd*sigs(1,g)*t
       ELSE
         slgg(1,1,1,1) = 0.3_r_knd*sigs(1,1)
       END IF
 
       IF ( g < ng ) THEN
         t = one / REAL( ng-g, r_knd )
-        slgg(1,1,g,(g+1):ng) = 0.7_r_knd*sigs(1,g)*t
+!        slgg(1,1,g,(g+1):ng) = 0.7_r_knd*sigs(1,g)*t
       ELSE
         slgg(1,1,ng,ng) = 0.9_r_knd*sigs(1,ng)
       END IF
@@ -686,14 +686,14 @@ MODULE setup_module
 
         IF ( g > 1 ) THEN
           t = one / REAL( g-1, r_knd )
-          slgg(2,1,g,1:(g-1)) = 0.1_r_knd*sigs(2,g)*t
+!          slgg(2,1,g,1:(g-1)) = 0.1_r_knd*sigs(2,g)*t
         ELSE
           slgg(2,1,1,1) = 0.6_r_knd*sigs(2,1)
         END IF
 
         IF ( g < ng ) THEN
           t = one / REAL( ng-g, r_knd )
-          slgg(2,1,g,(g+1):ng) = 0.4_r_knd*sigs(2,g)*t
+!          slgg(2,1,g,(g+1):ng) = 0.4_r_knd*sigs(2,g)*t
         ELSE
           slgg(2,1,ng,ng) = 0.9_r_knd*sigs(2,ng)
         END IF
@@ -819,79 +819,6 @@ MODULE setup_module
     WRITE( ounit, 159 ) ( star, i = 1, 80 )
 !_______________________________________________________________________
 
-    131 FORMAT( 10X, 'keyword Calculation Run-time Parameters Echo', /,&
-                80A, / )
-
-    132 FORMAT( 2X, 'Geometry' )
-    133 FORMAT( 4X, 'ndimen = ', I1, /, 4X, 'nx = ', I5, /, 4X,        &
-                'ny = ', I5, /, 4X, 'nz = ', I5, /, 4X, 'lx = ',       &
-                ES11.4, /, 4X, 'ly = ', ES11.4, /, 4X, 'lz = ', ES11.4,&
-                /, 4X, 'dx = ', ES11.4, /, 4X, 'dy = ', ES11.4, /, 4X, &
-                'dz = ', ES11.4, / )
-
-    134 FORMAT( 2X, 'Sn' )
-    135 FORMAT( 4X, 'nmom = ', I1, /, 4X, 'nang = ', I4, /, 4X,        &
-                'noct = ', I1, /, /, 4X, 'w = ', ES11.4,               &
-                '   ... uniform weights', / )
-    136 FORMAT( 4X, '      mu              eta               xi')
-    137 FORMAT( 4X, ES15.8 )
-    138 FORMAT( 4X, ES15.8, 2X, ES15.8 )
-    139 FORMAT( 4X, ES15.8, 2X, ES15.8, 2X, ES15.8 )
-
-    140 FORMAT( /, 2X, 'Material Map' )
-    141 FORMAT( 4X, 'mat_opt = ', I1, '   -->   nmat = ', I1 )
-    142 FORMAT( 4X, 'Base material (default for every cell) = 1' )
-    143 FORMAT( 4X, 'Material 2 present:', /, 8X, 'Starting cell: ( ', &
-                I5, ', ', I5, ', ', I5, ' )', /, 8X,                   &
-                'Ending cell:   ( ', I5, ', ', I5, ', ', I5, ' )' )
-
-    144 FORMAT( /, 2X, 'Source Map' )
-    145 FORMAT( 4X, 'src_opt = ', I1 )
-    146 FORMAT( 4X, 'Source strength per cell (where applied) = 1.0' )
-    147 FORMAT( 4X, 'Source map:', /, 8X, 'Starting cell: ( ', I5,     &
-                ', ', I5, ', ', I5, ' )', /, 8X, 'Ending cell:   ( ',  &
-                I5, ', ', I5, ', ', I5, ' )', / )
-    1471 FORMAT( 4X, 'MMS-generated source', / )
-
-    148 FORMAT( 2X, 'Pseudo Cross Sections Data' )
-    149 FORMAT( 4X, 'ng = ', I3 )
-    150 FORMAT( /, 4X, 'Material ', I1 )
-    151 FORMAT( 4X, 'Group         Total         Absorption      ',    &
-               'Scattering' )
-    152 FORMAT( 5X, I3, 6X, ES13.6, 3X, ES13.6, 3X, ES13.6 )
-
-    153 FORMAT( /, 2X, 'Time-Dependent Calculation Data' )
-    154 FORMAT( 4X, 'tf = ', ES11.4, /, 4X, 'nsteps = ', I4, /, 4X,    &
-                'dt = ', ES11.4, / )
-    155 FORMAT( 4X, 'Group        Speed' )
-    156 FORMAT( 5X, I3, 6X, ES11.4 )
-
-    157 FORMAT( /, 2X, 'Solution Control Parameters' )
-    158 FORMAT( 4X, 'epsi = ', ES11.4, /, 4X, 'iitm = ', I3, /,        &
-                4X, 'oitm = ', I4, /, 4X, 'timedep = ', I1, /,         &
-                4X, 'swp_typ = ', I1, /, 4X, 'multiswp = ', I1, /,     &
-                4X, 'angcpy = ', I1, /,  4X, 'it_det = ', I1, /,       &
-                4X, 'soloutp = ', I1, /, 4X, 'kplane = ', I4, /,       &
-                4X, 'popout = ', I1, /, 4X, 'fluxp = ', I1, /,         &
-                4X, 'fixup = ', I1, / )
-
-    181 FORMAT( /, 2X, 'Parallelization Parameters' )
-    182 FORMAT( 4X, 'npey = ', I5, /, 4X, 'npez = ', I5, /, 4X,        &
-                'nthreads = ', I4, / )
-    183 FORMAT( 10X, 'Thread Support Level', /,                        &
-                10X, I2, ' - MPI_THREAD_SINGLE', /,                    &
-                10X, I2, ' - MPI_THREAD_FUNNELED', /,                  &
-                10X, I2, ' - MPI_THREAD_SERIALIZED', /,                &
-                10X, I2, ' - MPI_THREAD_MULTIPLE' )
-    184 FORMAT( 4X, 'thread_level = ', I2, / )
-    185 FORMAT( 4X, '.TRUE. nested threading', /, 6X, 'nnested = ',    &
-                I4, / )
-    186 FORMAT( 4X, '.FALSE. nested threading', /, 6X, 'nnested = ',   &
-                I4, / )
-    187 FORMAT( 4X, 'Parallel Computational Efficiency = ', F6.4, / )
-
-    159 FORMAT( 80A, / )
-!_______________________________________________________________________
 !_______________________________________________________________________
 
   END SUBROUTINE setup_echo
@@ -941,9 +868,6 @@ MODULE setup_module
     CALL close_file ( fu, ierr, error )
 !_______________________________________________________________________
 
-    161 FORMAT( 'slgg(nmat,nmom,ng,ng) echo', /, 'Column-order loops:',&
-                ' Mats (fastest ), Moments, Groups, Groups (slowest)' )
-    162 FORMAT( 2X, ES15.8, 2X, ES15.8, 2X, ES15.8, 2X, ES15.8 )
 !_______________________________________________________________________
 !_______________________________________________________________________
 
