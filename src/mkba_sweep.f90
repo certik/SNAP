@@ -13,7 +13,7 @@ MODULE mkba_sweep_module
   USE plib_module, ONLY: ichunk, firsty, lasty, firstz, lastz,         &
     nnested
 
-  USE geom_module, ONLY: nx, hi, hj, hk, ndimen, ny, nz, ndiag, diag, nc
+  USE geom_module, ONLY: nx, hi, hj, hk, ndimen, ny, nz, ndiag, nc
 
   USE sn_module, ONLY: cmom, nang, mu, eta, xi, w, noct
 
@@ -26,6 +26,17 @@ MODULE mkba_sweep_module
   IMPLICIT NONE
 
   PUBLIC :: mkba_sweep
+
+  TYPE cell_id_type
+    INTEGER(i_knd) :: ic, j, k
+  END TYPE cell_id_type
+
+  TYPE diag_type
+    INTEGER(i_knd) :: len
+    TYPE(cell_id_type), ALLOCATABLE, DIMENSION(:) :: cell_id
+  END TYPE diag_type
+
+  TYPE(diag_type), ALLOCATABLE, DIMENSION(:) :: diag
 
 
   CONTAINS
