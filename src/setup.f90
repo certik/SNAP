@@ -751,9 +751,11 @@ MODULE setup_module
     CHARACTER(LEN=1) :: star='*'
 
     INTEGER(i_knd) :: i, j
+    character(1) :: stars_array80(80)
+    stars_array80 = '*'
 !_______________________________________________________________________
 
-    WRITE( ounit, 131 ) ( star, i = 1, 80 )
+    WRITE( ounit, 131 ) stars_array80
 
     WRITE( ounit, 132 )
     WRITE( ounit, 133 ) ndimen, nx, ny_gl, nz_gl, lx, ly, lz, dx, dy, dz
@@ -789,15 +791,23 @@ MODULE setup_module
     DO j = 1, nmat
       WRITE( ounit, 150 ) j
       WRITE( ounit, 151 )
-      WRITE( ounit, 152 ) ( i, sigt(j,i), siga(j,i), sigs(j,i),        &
-                            i = 1, ng )
+      ! WRITE( ounit, 152 ) ( i, sigt(j,i), siga(j,i), sigs(j,i),        &
+      !                       i = 1, ng )
+      ! >>>> Workaround <<<<<
+      DO i =1, ng
+        WRITE( ounit, 152 ) i, sigt(j,i), siga(j,i), sigs(j,i)
+      END DO
     END DO
 
     IF ( timedep == 1 ) THEN
       WRITE( ounit, 153 )
       WRITE( ounit, 154 ) tf, nsteps, dt
       WRITE( ounit, 155 )
-      WRITE( ounit, 156 ) ( i, v(i), i = 1, ng )
+      ! WRITE( ounit, 156 ) ( i, v(i), i = 1, ng )
+      ! >>>> Workaround <<<<<
+      DO i=1, ng
+        WRITE( ounit, 156 ) i, v(i)
+      END DO
     END IF
 
     WRITE( ounit, 157 )
@@ -816,7 +826,7 @@ MODULE setup_module
     END IF
     WRITE ( ounit, 187 ) pce
 
-    WRITE( ounit, 159 ) ( star, i = 1, 80 )
+    WRITE( ounit, 159 ) stars_array80
 !_______________________________________________________________________
 
     131 FORMAT( 10X, 'keyword Calculation Run-time Parameters Echo', /,&
