@@ -63,6 +63,10 @@ MODULE output_module
     REAL(r_knd) :: t1, t2
 
     REAL(r_knd), ALLOCATABLE, DIMENSION(:,:) :: fprnt
+    character(1) :: stars_array35(35)
+    character(1) :: stars_array80(80)
+    stars_array35 = '*'
+    stars_array80 = '*'
 !_______________________________________________________________________
 
     CALL wtime ( t1 )
@@ -84,7 +88,7 @@ MODULE output_module
     IF ( soloutp == 1 ) THEN
 
       IF ( iproc == root ) THEN
-        WRITE( ounit, 301 ) ( star, i = 1, 80 )
+        WRITE( ounit, 301 ) stars_array80
         ALLOCATE( fprnt(nx,ny_gl), STAT=ierr )
         fprnt = zero
       END IF
@@ -130,8 +134,7 @@ MODULE output_module
 
           co(1) = (k-1)/nz
           fprnt(:,1:ny) = flux0(:,:,kloc,g)
-          WRITE( ounit, 302 ) ( star, i = 1, 35 ), g, k,               &
-            ( star, i = 1, 35 )
+          WRITE( ounit, 302 ) stars_array35, g, k, stars_array35
 
           DO jp = 0, npey-1
             jlb = jp*ny + 1
@@ -151,11 +154,12 @@ MODULE output_module
             END DO
             WRITE( ounit, FMT=305, ADVANCE='YES' )
             DO j = ny_gl, 1, -1
-              WRITE( ounit, 306 ) j, ( fprnt(ii,j), ii = i, is )
+              WRITE( ounit, 306 ) j
+              write (ounit, 308) ( fprnt(ii,j), ii = i, is )
             END DO
           END DO
 
-          WRITE( ounit, 307 ) ( star, i = 1, 80 )
+          WRITE( ounit, 307 ) stars_array80
 
         END IF
 
@@ -193,7 +197,8 @@ MODULE output_module
     303 FORMAT( /, 5X, 'y' )
     304 FORMAT( 4X, 'x ', I4, 2X )
     305 FORMAT( 1X )
-    306 FORMAT( 2X, I4, 6(1X, ES11.4) )
+    306 FORMAT( 2X, I4)
+    308 FORMAT ( 2X, 6(1X, ES11.4) )
     307 FORMAT( /, 80A, / )
 !_______________________________________________________________________
 !_______________________________________________________________________

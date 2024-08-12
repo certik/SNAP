@@ -66,6 +66,12 @@ SUBROUTINE translv ( ndpwds )
   REAL(r_knd) :: sf, time, t1, t2, t3, t4, t5, tmp
 
   REAL(r_knd), DIMENSION(:,:,:,:,:,:), POINTER :: ptr_tmp
+  character(1) :: stars_array80(80)
+  character(1) :: stars_array30(30)
+  character(1) :: stars_array20(20)
+  stars_array80 = '*'
+  stars_array30 = '*'
+  stars_array20 = '*'
 !_______________________________________________________________________
 !
 ! Call for data allocations. Some allocations depend on the problem
@@ -105,8 +111,8 @@ SUBROUTINE translv ( ndpwds )
 !_______________________________________________________________________
 
   IF ( iproc == root ) THEN
-    WRITE( *, 201)     ( star, i = 1, 80 )
-    WRITE( ounit, 201) ( star, i = 1, 80 )
+    WRITE( *, 201)     stars_array80
+    WRITE( ounit, 201) stars_array80
   END IF
 
   tot_iits = 0
@@ -136,8 +142,8 @@ SUBROUTINE translv ( ndpwds )
     update_ptr = .TRUE.
     IF ( timedep == 1 ) THEN
       IF ( iproc == root ) THEN
-        WRITE( *, 202 )     ( star, i = 1, 30 ), cy
-        WRITE( ounit, 202 ) ( star, i = 1, 30 ), cy
+        WRITE( *, 202 )     stars_array30, cy
+        WRITE( ounit, 202 ) stars_array30, cy
       END IF
       vdelt = two / ( dt * v )
       time = dt * ( REAL( cy, r_knd ) - half )
@@ -234,8 +240,8 @@ SUBROUTINE translv ( ndpwds )
 
   !$OMP MASTER
       IF ( iproc==root .AND. it_det==1 ) THEN
-        WRITE( *, 204 )     ( star, i = 1, 20 ), otno
-        WRITE( ounit, 204 ) ( star, i = 1, 20 ), otno
+        WRITE( *, 204 )     stars_array20, otno
+        WRITE( ounit, 204 ) stars_array20, otno
       END IF
   !$OMP END MASTER
 !_______________________________________________________________________
@@ -284,8 +290,8 @@ SUBROUTINE translv ( ndpwds )
       CALL assign_thrd_set ( do_grp, ng, ng_per_thrd, 0, nnstd_used,   &
         grp_act )
       IF ( iproc==root .AND. it_det==1 ) THEN
-        WRITE( *, 204 )     ( star, i = 1, 20 ), otno
-        WRITE( ounit, 204 ) ( star, i = 1, 20 ), otno
+        WRITE( *, 204 )     stars_array20, otno
+        WRITE( ounit, 204 ) stars_array20, otno
       END IF
   !$OMP END MASTER
   !$OMP BARRIER
@@ -359,11 +365,11 @@ SUBROUTINE translv ( ndpwds )
 
   IF ( iproc == root ) THEN
     IF ( timedep == 1 ) THEN
-      WRITE( *, 210 )     ( star, i = 1, 30 ), tot_iits
-      WRITE( ounit, 210 ) ( star, i = 1, 30 ), tot_iits
+      WRITE( *, 210 )     stars_array30, tot_iits
+      WRITE( ounit, 210 ) stars_array30, tot_iits
     END IF
-    WRITE( *, 211 )     ( star, i = 1, 80 )
-    WRITE( ounit, 211 ) ( star, i = 1, 80 )
+    WRITE( *, 211 )     stars_array80
+    WRITE( ounit, 211 ) stars_array80
   END IF
 
   CALL wtime ( t5 )

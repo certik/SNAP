@@ -151,10 +151,12 @@ MODULE input_module
     CHARACTER(LEN=1) :: star='*'
 
     INTEGER(i_knd) :: i
+    character(1) :: stars_array80(80)
+    stars_array80 = '*'
 !_______________________________________________________________________
 
-    WRITE( ounit, 121 ) ( star, i = 1, 80 )
-    WRITE( ounit, 122 ) ( star, i = 1, 80 )
+    WRITE( ounit, 121 ) stars_array80
+    WRITE( ounit, 122 ) stars_array80
     WRITE( ounit, 123 )
     WRITE( ounit, 124 ) npey, npez, ichunk, nthreads, nnested
     WRITE( ounit, 125 ) ndimen, nx, ny, nz
@@ -163,7 +165,7 @@ MODULE input_module
     WRITE( ounit, 128 ) ng, mat_opt, src_opt, scatp
     WRITE( ounit, 129 ) epsi, iitm, oitm, timedep, tf, nsteps, swp_typ,&
       multiswp, angcpy, it_det, soloutp, kplane, popout, fluxp, fixup
-    WRITE( ounit, 121 ) ( star, i = 1, 80 )
+    WRITE( ounit, 121 ) stars_array80
 !_______________________________________________________________________
 
     121 FORMAT( /, 80A, / )

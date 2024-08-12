@@ -112,6 +112,8 @@ PROGRAM snap_main
   INTEGER(i_knd) :: ierr, i, ndpwds
 
   REAL(r_knd) :: t1, t2, t3, t4, t5
+  character(1) :: stars_array80(80)
+  stars_array80 = '*'
 !_______________________________________________________________________
 !
 ! Perform calls that set up the parallel environment in MPI and
@@ -220,8 +222,8 @@ PROGRAM snap_main
     WRITE( ounit, 501 ) tsnap
 !    WRITE( ounit, 502 ) tgrind, ( star, i = 1, 80 )
     WRITE( ounit, 502 ) tgrind
-    WRITE( ounit, 504 ) one/tgrind, ( star, i = 1, 80 )
-    WRITE( ounit, 503 ) ndpwds, ( star, i = 1, 80 )
+    WRITE( ounit, 504 ) one/tgrind, stars_array80
+    WRITE( ounit, 503 ) ndpwds, stars_array80
   END IF
 
   CALL close_file ( ounit, ierr, error )
