@@ -99,6 +99,8 @@ PROGRAM snap_main
 
   USE control_module, ONLY: otrdone, swp_typ
 
+  USE translv_module, ONLY: translv
+
   IMPLICIT NONE
 !_______________________________________________________________________
 !
