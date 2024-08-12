@@ -154,7 +154,7 @@ setup.o :	global.o geom.o sn.o data.o control.o mms.o utils.o time.o \
 output.o :	global.o geom.o sn.o data.o control.o utils.o solvar.o \
 		mms.o time.o plib.o
 snap_main.o :	global.o utils.o version.o input.o setup.o output.o time.o \
-		dealloc.o plib.o control.o
+		dealloc.o plib.o control.o translv.o
 dim1_sweep.o :	global.o geom.o sn.o data.o control.o plib.o
 dim3_sweep.o :	global.o plib.o geom.o sn.o data.o control.o thrd_comm.o
 mkba_sweep.o :	global.o plib.o geom.o sn.o data.o control.o thrd_comm.o

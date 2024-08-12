@@ -1,3 +1,7 @@
+MODULE translv_module
+CONTAINS
+
+
 SUBROUTINE translv ( ndpwds )
 
 !-----------------------------------------------------------------------
@@ -400,3 +404,6 @@ SUBROUTINE translv ( ndpwds )
 !_______________________________________________________________________
 
 END SUBROUTINE translv
+
+
+END MODULE translv_module
