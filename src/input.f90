@@ -56,10 +56,10 @@ MODULE input_module
 
     REAL(r_knd) :: t1, t2
 
-    NAMELIST / invar / npey, npez, ichunk, nthreads, ndimen, nx, ny,   &
-      nz, lx, ly, lz, nmom, nang, ng, epsi, iitm, oitm, timedep, tf,   &
-      nsteps, mat_opt, src_opt, scatp, swp_typ, multiswp, it_det,      &
-      fluxp, fixup, nnested, soloutp, kplane, popout, angcpy
+    ! NAMELIST / invar / npey, npez, ichunk, nthreads, ndimen, nx, ny,   &
+    !   nz, lx, ly, lz, nmom, nang, ng, epsi, iitm, oitm, timedep, tf,   &
+    !   nsteps, mat_opt, src_opt, scatp, swp_typ, multiswp, it_det,      &
+    !   fluxp, fixup, nnested, soloutp, kplane, popout, angcpy
 !_______________________________________________________________________
 !
 !   Read the input file. Echo to output file. Call for an input variable
@@ -69,8 +69,39 @@ MODULE input_module
     CALL wtime ( t1 )
 
     ierr = 0
-
-    IF ( iproc == root ) READ( iunit, NML=invar, IOSTAT=ierr )
+    IF ( iproc == root ) THEN
+      npey=1 ! use 1 as we don't use mpi.
+      npez=1 ! use 1 as we don't use mpi.
+      ichunk=2
+      nthreads=2
+      nnested=1
+      ndimen=3
+      nx=6
+      lx=0.6
+      ny=6
+      ly=0.6
+      nz=6
+      lz=0.6
+      nmom=1
+      nang=10
+      ng=4
+      epsi=1.0E-4
+      iitm=5
+      oitm=30
+      timedep=0
+      tf=1.0
+      nsteps=1
+      mat_opt=0
+      src_opt=0
+      scatp=0
+      it_det=0
+      fluxp=0
+      fixup=1
+      soloutp=1
+      kplane=0
+      popout=0
+      swp_typ=0
+    END IF
     CALL bcast ( ierr, comm_snap, root )
     IF ( ierr /= 0 ) THEN
       error = '***ERROR: READ_INPUT: Problem reading input file'
