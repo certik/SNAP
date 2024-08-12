@@ -173,8 +173,8 @@ translv.o :	global.o plib.o geom.o sn.o data.o control.o utils.o \
 # Fortran rules
 #
 %.o:	%.F90
-	$(PP) -P $(PPFLAGS) $< >$*.f90
-	$(FORTRAN) $(FFLAGS) -c $*.f90
+	$(PP) -P $(PPFLAGS) $< >$*.0.f90
+	$(FORTRAN) $(FFLAGS) -c $*.0.f90 -o $*.o
 
 %.o:	%.f90
 	$(FORTRAN) $(FFLAGS) -c $<
