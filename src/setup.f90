@@ -789,15 +789,23 @@ MODULE setup_module
     DO j = 1, nmat
       WRITE( ounit, 150 ) j
       WRITE( ounit, 151 )
-      WRITE( ounit, 152 ) ( i, sigt(j,i), siga(j,i), sigs(j,i),        &
-                            i = 1, ng )
+     ! WRITE( ounit, 152 ) ( i, sigt(j,i), siga(j,i), sigs(j,i),        &
+      !                       i = 1, ng )
+      ! >>>> Workaround <<<<<
+      DO i =1, ng
+        WRITE( ounit, 152 ) i, sigt(j,i), siga(j,i), sigs(j,i)
+      END DO
     END DO
 
     IF ( timedep == 1 ) THEN
       WRITE( ounit, 153 )
       WRITE( ounit, 154 ) tf, nsteps, dt
       WRITE( ounit, 155 )
-      WRITE( ounit, 156 ) ( i, v(i), i = 1, ng )
+      ! WRITE( ounit, 156 ) ( i, v(i), i = 1, ng )
+      ! >>>> Workaround <<<<<
+      DO i=1, ng
+        WRITE( ounit, 156 ) i, v(i)
+      END DO
     END IF
 
     WRITE( ounit, 157 )
